@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	// 	"math"
+	"math"
 	"bufio"
 	"os"
 	"strconv"
@@ -13,10 +13,11 @@ var pList = []int64{}
 var pList_file string = "./pList.txt"
 
 func main() {
-	init_pLIst()
-	pList = append(pList, 7, 11, 13, 17, 19, 23)
-	fmt.Println(pList)
-	sync_pList()
+// 	init_pLIst()
+// 	pList = append(pList, 7, 11, 13, 17, 19, 23)
+// 	fmt.Println(pList)
+// 	sync_pList()
+    fmt.Println(os.Args[1])
 }
 
 func init_pLIst() {
@@ -67,10 +68,22 @@ func sync_pList() {
 }
 
 func is_prime_number(n int64) bool {
-	var c int64
-	
+    var c int64
 	for _, x := range pList {
-		
-		if 
+	    c = x
+	    if n == x {
+	        return true
+	    }
+		if n % x == 0 {
+		    return false
+		}
 	}
+	
+	for i := c+1; float64(i) <= math.Sqrt(float64(n)); i++ {
+	    if n % i == 0 {
+	        return false
+	    }
+	}
+	
+	return true
 }
